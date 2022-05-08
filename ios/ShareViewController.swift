@@ -180,7 +180,8 @@ class ShareViewController: SLComposeServiceViewController {
       
       let mimeType = url.extractMimeType()
       let fileExtension = url.pathExtension
-      let fileName = UUID().uuidString
+			let originFileName = url.lastPathComponent
+      let fileName = originFileName.replacingOccurrences(of: "." + fileExtension, with: "") + "_" + UUID().uuidString
       let filePath = groupFileManagerContainer
         .appendingPathComponent("\(fileName).\(fileExtension)")
       
